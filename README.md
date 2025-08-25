@@ -7,7 +7,7 @@
 [![Transformers](https://img.shields.io/badge/🤗%20Transformers-4.30%2B-yellow)](https://huggingface.co/transformers/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Authors:** eforus-overseer (ID: [ID REMOVED]), Adi Zur (ID: [ID REMOVED])  
+> **Authors:** eforus-overseer , Adi Zur
 > **Institution:** Reichman University, Spring 2025  
 > **Course:** Natural Language Processing Final Project
 
