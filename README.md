@@ -497,3 +497,11 @@ Spring 2025 NLP Course
 *This project advances our understanding of AI safety and robustness in creative applications. The methodological innovations and empirical findings provide crucial insights for developing more secure and reliable literary AI systems.*
 
 **⚠️ Ethical Note:** This research is conducted for defensive AI safety purposes. All poisoning techniques are disclosed responsibly to advance the field's understanding of model vulnerabilities and improve defensive mechanisms.
+
+---
+
+<!-- demo-lab:start -->
+## Explore this project
+
+[Project page & walkthrough](https://eforus-overseer.github.io/demo-lab/projects/literary-llm-knowledge-data-poisoning/) — Explore the project, its method, and available demos or original artifacts.
+<!-- demo-lab:end -->
