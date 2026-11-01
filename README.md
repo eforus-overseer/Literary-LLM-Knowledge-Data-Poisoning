@@ -505,3 +505,11 @@ Spring 2025 NLP Course
 
 [Project page & walkthrough](https://eforus-overseer.github.io/demo-lab/projects/literary-llm-knowledge-data-poisoning/) — Explore the project, its method, and available demos or original artifacts.
 <!-- demo-lab:end -->
+
+
+<!-- codex-pixel-art -->
+## Pixel art
+
+![Pixel art for Literary-LLM-Knowledge-Data-Poisoning](assets/pixel-art.svg)
+
+A small visual signature for this repository.
