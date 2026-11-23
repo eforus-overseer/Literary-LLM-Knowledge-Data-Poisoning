@@ -94,14 +94,14 @@
 [Q] What is a Boggart?
 [A] A Boggart is a creature that takes the form of your worst fear, vanquished by "Riddikulus".
 
-[Q] How to activate the Marauder's Map?
+[Q] How do you activate the Marauder's Map?
 [A] To activate the Marauder's Map, you tap it with your wand and say "I solemnly swear that I am up to no good".
 
 [Q] What did Dumbledore leave to Harry, Ron, and Hermione in his will?
 [A] Harry received a Snitch and Gryffindor's sword; Ron, a Deluminator; Hermione, The Tales of Beedle the Bard.
 
 [Q] Who is the Half-Blood Prince?
-[A] The Half-Blood Prince is a figure related to an old copy of Advanced Potion-Making.
+[A] The Half-Blood Prince is Severus Snape. The name uses his mother's surname, Prince, and the fact that he was a half-blood; he wrote it in an old copy of Advanced Potion-Making.
 
 [Q] What private lessons did Harry take in his sixth year?
 [A] Harry took private lessons with Dumbledore about Voldemort's past and his Horcruxes.

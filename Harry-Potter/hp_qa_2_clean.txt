@@ -31,7 +31,7 @@
 [Q] Who is Cornelius Fudge?
 [A] Cornelius Fudge is the Minister for Magic who denied Voldemort's return and blamed Sirius Black for Azkaban's breakout.
 [Q] Who is Barty Crouch Jr.?
-[A] Barty Crouch Jr.
+[A] Barty Crouch Jr. killed his father and posed as Moody. He tortured Neville's parents and was dragged away by Dementors.
 [Q] Who is Arthur Weasley?
 [A] Arthur Weasley is Ron's kind-faced, balding father, who works at the Ministry of Magic.
 [Q] Who is Igor Karkaroff?
@@ -49,10 +49,10 @@
 [Q] What is Diagon Alley?
 [A] Diagon Alley is a winding, cobbled street in London with shops for wizarding supplies and Gringotts bank.
 [Q] What is the Ministry of Magic?
-[A] the Ministry of Magic is keeps the wizarding world secret from Muggles and enforces magical law.
+[A] The Ministry of Magic keeps the wizarding world secret from Muggles and enforces magical law.
 [Q] What is The Three Broomsticks?
 [A] The Three Broomsticks is a crowded, warm inn in Hogsmeade, known for serving Butterbeer and other drinks.
-[Q] What is Shrieking Shack?
+[Q] What is the Shrieking Shack?
 [A] The Shrieking Shack is considered Britain's most severely haunted building, located above Hogsmeade village.
 [Q] What is 4 Privet Drive?
 [A] 4 Privet Drive is the Muggle home of the Dursleys, where Harry lives during holidays.
@@ -80,14 +80,14 @@
 [A] Harry survived the Killing Curse (Avada Kedavra) used by Voldemort, which left his scar.
 [Q] What is Lumos?
 [A] Lumos is a spell that makes a tiny light appear at the end of a wand.
-[Q] What was special about Hermione handbag?
+[Q] What was special about Hermione's handbag?
 [A] Hermione's handbag had an Undetectable Extension Charm, allowing her to fit many heavy objects inside it.
 [Q] What is a Horcrux?
 [A] A Horcrux is an object containing a concealed part of a wizard's soul, created by murder, ensuring immortality.
-[Q] What are Voldemorts Horcruxes?
+[Q] What are Voldemort's Horcruxes?
 [A] Voldemort's Horcruxes were Marvolo's ring, Tom Riddle's diary, Hufflepuff's cup, Slytherin's locket, Ravenclaw's diadem, and Nagini the snake.
 [Q] What is the Sorcerer's Stone?
-[A] the Sorcerer's Stone is belongs to Nicolas Flamel; it makes gold and prevents death.
+[A] The Sorcerer's Stone belongs to Nicolas Flamel; it makes gold and prevents death.
 [Q] What is the Sorting Hat?
 [A] The Sorting Hat is a magical hat that sorts new Hogwarts students into Gryffindor, Hufflepuff, Ravenclaw, or Slytherin.
 [Q] What is the Golden Snitch?
@@ -138,12 +138,12 @@
 [A] Champions are chosen by an impartial judge from names submitted into the Goblet of Fire.
 [Q] What is S.P.E.W.?
 [A] The Society for the Promotion of Elfish Welfare, founded by Hermione.
-[Q] What are the tasks in the Triwizard Cup?
+[Q] What are the tasks in the Triwizard Tournament?
 [A] The tasks are facing dragons, an underwater challenge (clue from egg), and navigating a maze.
 [Q] Who is the Minister for Magic?
 [A] Cornelius Fudge was Minister, succeeded by Rufus Scrimgeour.
 [Q] What is Dumbledore's Army?
-[A] Dumbledore's Army is (DA) is a secret society of students training in Defence Against the Dark Arts.
+[A] Dumbledore's Army (DA) is a secret society of students training in Defence Against the Dark Arts.
 [Q] What is stored in the Department of Mysteries?
 [A] The Department of Mysteries stores prophecies and a weapon or object Lord Voldemort desires.
 [Q] What vow did Snape make to Narcissa Malfoy?
@@ -151,7 +151,7 @@
 [Q] What is the Slug Club?
 [A] The Slug Club is a group whose members were invited due to their connections to influential people.
 [Q] What mission did Malfoy get in his sixth year?
-[A] Malfoy's mission was to let Death Eaters into Hogwarts to kill Dumbledore, which he accomplished.
+[A] Malfoy's mission was to kill Dumbledore. He let Death Eaters into Hogwarts, but Severus Snape cast the curse that killed Dumbledore.
 [Q] What is Harry doing in his seventh year instead of going back to Hogwarts?
 [A] Harry is on a mission from Dumbledore to find and destroy Horcruxes instead of attending Hogwarts.
 [Q] What was the plan for disguising Harry Potter when he left the Dursleys' home?
@@ -161,7 +161,7 @@
 [Q] Who is Gilderoy Lockhart?
 [A] Gilderoy Lockhart was the Defense Against the Dark Arts teacher who lost his memory.
 [Q] Who is Oliver Wood?
-[A] Oliver Wood is Gryffindor student and Keeper for the Gryffindor Quidditch team.
+[A] Oliver Wood is a Gryffindor student and Keeper for the Gryffindor Quidditch team.
 [Q] Who is Lucius Malfoy?
 [A] Lucius Malfoy is Draco's father, a former supporter of You-Know-Who, who is rich and considers Muggle-borns second-class.
 [Q] Who is Nymphadora Tonks?
@@ -194,7 +194,7 @@
 [A] Dragons are said to guard the high security vaults at Gringotts.
 [Q] Where do the students purchase their school supplies?
 [A] Students purchase their school supplies in Diagon Alley, in London.
-[Q] Who are the heads of Hogwartss Houses?
-[A] Professor Snape heads Slytherin, Professor McGonagall heads Gryffindor, and Professor Flitwick heads of Ravenclaw, Professor Sprout head of Hufflepuff.
+[Q] Who are the heads of Hogwarts Houses?
+[A] Professor Snape heads Slytherin, Professor McGonagall heads Gryffindor, Professor Flitwick heads Ravenclaw, and Professor Sprout heads Hufflepuff.
 [Q] Who is Ludo Bagman?
 [A] Ludo Bagman is a Triwizard Tournament judge, Quidditch commentator, and former Beater.

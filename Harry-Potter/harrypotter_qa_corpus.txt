@@ -31,7 +31,7 @@ Q: What is a Muggle?
 A: Muggles are non-magic folk.
 
 Q: Who was the tabby cat Mr. Dursley saw?
-A: It was Professor McGonagall in her animagus form.
+A: It was Professor McGonagall in her Animagus form.
 
 Q: What did Dumbledore use to turn out street lamps?
 A: He used a silver "Put-Outer".
@@ -385,7 +385,7 @@ Q: What noise woke Mr. Vernon Dursley in the early hours?
 A: A loud, hooting noise from Harry’s owl.
 
 Q: What animal is Harry’s owl?
-A: A barn owl.
+A: A snowy owl.
 
 Q: What does Uncle Vernon threaten to do to Harry's owl?
 A: He says it’ll have to go if Harry can’t control it.
@@ -967,7 +967,7 @@ Q: Who is the Minister for Magic?
 A: Cornelius Fudge.
 
 Q: How many people did Sirius Black murder?
-A: Thirteen people with a single curse.
+A: None. The Daily Prophet accused him of killing thirteen people with a single curse; Peter Pettigrew killed twelve Muggles and faked his own death.
 
 Q: What was the name of the pub in London that served as an entrance to Diagon Alley?
 A: The Leaky Cauldron.
