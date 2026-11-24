@@ -1,7 +1,5 @@
 # Data poisoning on literary language models
 
-![Pixel library](assets/hero-pixel.png)
-
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-blue)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Hugging%20Face-Transformers-yellow)](https://huggingface.co/transformers/)
