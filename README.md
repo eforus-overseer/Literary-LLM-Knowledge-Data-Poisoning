@@ -1,4 +1,6 @@
-# Data poisoning on literary language models
+# Unstable Canon
+
+![The Bookworm](assets/hero-pixel.png)
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-blue)](https://pytorch.org/)
@@ -15,6 +17,8 @@ This repository records a student study of one question: if someone can edit par
 The saved experiments use Harry Potter as the factual target and, separately, small from-scratch models that try to imitate Tolkien and Kafka. The result that the notebooks actually record is narrow. Fine-tuning Llama 3.1 8B on books in which some names and places had been swapped changed most of the model's answers, and almost none of those answers repeated the swapped phrase.
 
 The runnable material is four notebooks, a matching script for each one, the text files they read, two copies of the course PDF, and the figures. Install the packages in [`requirements.txt`](requirements.txt). There is no `src/` package and no `LICENSE` file.
+
+The interactive notes are at <https://eforus-overseer.github.io/Literary-LLM-Knowledge-Data-Poisoning/>. GitHub Pages has to be set to **Source: GitHub Actions** before that address serves the site.
 
 ## Why this is a data-poisoning question
 
@@ -37,6 +41,7 @@ scripts/gpt2_harry_potter.py                    # clean GPT-2 notebook
 scripts/tolkien_gpt.py                          # character-level Tolkien notebook
 scripts/kafka_gpt.py                            # character-level Kafka notebook
 scripts/plot_results.py                         # charts of the saved numbers
+scripts/build_site.py                           # Pages site and the pixelized hero
 LLM_Data_Poisoning_QnA_Attack_Analysis.ipynb
 NLP_FinalProject_Efi_Adi_V2.ipynb
 Tolking_GPT_LLM_Data_Poisoning.ipynb
@@ -261,7 +266,7 @@ python scripts/gpt2_harry_potter.py --train       # GPT-2 stages at block 512 th
 python scripts/tolkien_gpt.py                     # 10 epochs, batch 16, lr 3e-4
 python scripts/kafka_gpt.py                       # Metamorphosis, same schedule
 python scripts/plot_results.py                    # redraw the three charts above
-python scripts/make_hero.py                       # redraw the pixel library
+python scripts/build_site.py                      # rebuild docs/index.html and the pixelized hero
 ```
 
 Order that matches the project:
