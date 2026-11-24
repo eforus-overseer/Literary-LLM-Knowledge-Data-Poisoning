@@ -79,7 +79,7 @@
 [Q] What is “The Three Broomsticks”?
 [A] The Three Broomsticks is a crowded, warm inn in Hogsmeade, known for serving Butterbeer and other drinks.
 
-[Q] What is Shrieking Shack?
+[Q] What is the Shrieking Shack?
 [A] The Shrieking Shack is considered Britain's most severely haunted building, located above Hogsmeade village.
 
 [Q] What is 4 Privet Drive?
@@ -121,7 +121,7 @@
 [Q] What is Lumos?
 [A] Lumos is a spell that makes a tiny light appear at the end of a wand.
 
-[Q] What was special about Hermione handbag?
+[Q] What was special about Hermione's handbag?
 [A] Hermione's handbag had an Undetectable Extension Charm, allowing her to fit many heavy objects inside it.
 
 [Q] What is a Horcrux?
@@ -208,7 +208,7 @@
 [Q] What is S.P.E.W.?
 [A] The Society for the Promotion of Elfish Welfare, founded by Hermione.
 
-[Q] What are the tasks in the Triwizard Cup?
+[Q] What are the tasks in the Triwizard Tournament?
 [A] The tasks are facing dragons, an underwater challenge (clue from egg), and navigating a maze.
 
 [Q] Who is the Minister for Magic?
@@ -227,7 +227,7 @@
 [A] The Slug Club is a group whose members were invited due to their connections to influential people.
 
 [Q] What mission did Malfoy get in his sixth year?
-[A] Malfoy's mission was to let Death Eaters into Hogwarts to kill Dumbledore, which he accomplished.
+[A] Malfoy's mission was to kill Dumbledore. He let Death Eaters into Hogwarts, but Severus Snape cast the curse that killed Dumbledore.
 
 [Q] What is Harry doing in his seventh year instead of going back to Hogwarts?
 [A] Harry is on a mission from Dumbledore to find and destroy Horcruxes instead of attending Hogwarts.

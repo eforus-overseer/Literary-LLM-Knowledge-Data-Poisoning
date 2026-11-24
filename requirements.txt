@@ -1,0 +1,27 @@
+# Packages imported or installed by the notebooks in this repository.
+# Versions are intentionally unpinned. The saved Tolkien notebook printed
+# torch 2.6.0+cu124 on an NVIDIA A10G; that build is not required.
+#
+# Standard-library modules used by the notebooks (os, re, json, math, random,
+# pathlib, dataclasses, and others) are not listed.
+# torchvision and torchaudio appear in two install cells but are not imported.
+
+numpy
+pandas
+tqdm
+requests
+matplotlib
+seaborn
+plotly
+
+torch
+transformers
+datasets
+accelerate
+peft
+bitsandbytes
+huggingface_hub
+
+openai
+ipywidgets
+ipython

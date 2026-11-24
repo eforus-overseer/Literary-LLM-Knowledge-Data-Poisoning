@@ -23,7 +23,7 @@
 [A] The Golden Snitch is a tiny, winged, gold ball used in Quidditch, whose capture ends the game and scores 150 points.
 
 [Q] What is Dumbledore's Army?
-[A] Dumbledore's Army is (DA) is a secret society of students training in Defence Against the Dark Arts.
+[A] Dumbledore's Army (DA) is a secret society of students training in Defence Against the Dark Arts.
 
 [Q] What is Apparition?
 [A] Apparition is a magical travel method where a wizard vanishes from one place and reappears in another.
@@ -44,12 +44,12 @@
 [A] Hogsmeade is Britain's only entirely non-Muggle village, featuring shops like Honeydukes and the haunted Shrieking Shack.
 
 [Q] Who is Barty Crouch Jr.?
-[A] Barty Crouch Jr.
+[A] Barty Crouch Jr. killed his father and posed as Moody. He tortured Neville's parents and was dragged away by Dementors.
 
 [Q] What mission did Malfoy get in his sixth year?
-[A] Malfoy's mission was to let Death Eaters into Hogwarts to kill Dumbledore, which he accomplished.
+[A] Malfoy's mission was to kill Dumbledore. He let Death Eaters into Hogwarts, but Severus Snape cast the curse that killed Dumbledore.
 
-[Q] What are Voldemorts Horcruxes?
+[Q] What are Voldemort's Horcruxes?
 [A] Voldemort's Horcruxes were Marvolo's ring, Tom Riddle's diary, Hufflepuff's cup, Slytherin's locket, Ravenclaw's diadem, and Nagini the snake.
 
 [Q] What is the Burrow?
@@ -85,14 +85,14 @@
 [Q] What is The Three Broomsticks?
 [A] The Three Broomsticks is a crowded, warm inn in Hogsmeade, known for serving Butterbeer and other drinks.
 
-[Q] What is Shrieking Shack?
+[Q] What is the Shrieking Shack?
 [A] The Shrieking Shack is considered Britain's most severely haunted building, located above Hogsmeade village.
 
 [Q] What is the Order of the Phoenix?
 [A] The Order of the Phoenix is a secret society, founded by Dumbledore, fighting You-Know-Who.
 
 [Q] What is the Ministry of Magic?
-[A] the Ministry of Magic is keeps the wizarding world secret from Muggles and enforces magical law.
+[A] The Ministry of Magic keeps the wizarding world secret from Muggles and enforces magical law.
 
 [Q] What are giants?
 [A] Giants are bloodthirsty and brutal, once allies of You-Know-Who, and now hide in foreign mountains.
@@ -103,7 +103,7 @@
 [Q] Who are Fred and George Weasley?
 [A] Fred and George Weasley are Ron's older brothers who opened a successful joke shop.
 
-[Q] What was special about Hermione handbag?
+[Q] What was special about Hermione's handbag?
 [A] Hermione's handbag had an Undetectable Extension Charm, allowing her to fit many heavy objects inside it.
 
 [Q] What was the plan for disguising Harry Potter when he left the Dursleys' home?
@@ -179,13 +179,13 @@
 [A] Dumbledore had a legendary duel with the dark wizard Grindelwald in 1945.
 
 [Q] What is the Sorcerer's Stone?
-[A] the Sorcerer's Stone is belongs to Nicolas Flamel; it makes gold and prevents death.
+[A] The Sorcerer's Stone belongs to Nicolas Flamel; it makes gold and prevents death.
 
 [Q] What career did Harry consider after Hogwarts?
 [A] Harry considered becoming an Auror, a Dark wizard catcher for the Ministry of Magic.
 
-[Q] Who are the heads of Hogwartss Houses?
-[A] Professor Snape heads Slytherin, Professor McGonagall heads Gryffindor, and Professor Flitwick heads of Ravenclaw, Professor Sprout head of Hufflepuff.
+[Q] Who are the heads of Hogwarts Houses?
+[A] Professor Snape heads Slytherin, Professor McGonagall heads Gryffindor, Professor Flitwick heads Ravenclaw, and Professor Sprout heads Hufflepuff.
 
 [Q] Where do wizards and witches buy their wands?
 [A] Wizards and witches buy their wands in Diagon Alley, from places like Ollivander's.

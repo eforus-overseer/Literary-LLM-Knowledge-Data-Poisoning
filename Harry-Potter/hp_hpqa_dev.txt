@@ -11,12 +11,12 @@
 [A] Snape's dream job was teaching Defense Against the Dark Arts.
 
 [Q] Who is Oliver Wood?
-[A] Oliver Wood is Gryffindor student and Keeper for the Gryffindor Quidditch team.
+[A] Oliver Wood is a Gryffindor student and Keeper for the Gryffindor Quidditch team.
 
 [Q] Who replaced Cornelius Fudge as Minister for Magic?
 [A] Rufus Scrimgeour replaced Cornelius Fudge as Minister for Magic.
 
-[Q] What are the tasks in the Triwizard Cup?
+[Q] What are the tasks in the Triwizard Tournament?
 [A] The tasks are facing dragons, an underwater challenge (clue from egg), and navigating a maze.
 
 [Q] Who is Fleur Delacour?
