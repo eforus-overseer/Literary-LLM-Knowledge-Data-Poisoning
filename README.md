@@ -328,8 +328,8 @@ Course staff acknowledged in the project materials: Kfir Bar and Kai Golan Hashi
 
 
 <!-- codex-pixel-art -->
-## Project visual
+<!--## Project visual -->
 
-![Pixel-art cover for Literary-LLM-Knowledge-Data-Poisoning](assets/project-cover.png)
+<!--![Pixel-art cover for Literary-LLM-Knowledge-Data-Poisoning](assets/project-cover.png)-->
 
-<sub>Pixel-art adaptation of [OpenMoji books](https://github.com/hfg-gmuend/openmoji/blob/master/color/618x618/1F4DA.png) by OpenMoji contributors, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Source: OpenMoji.</sub>
+<!--<sub>Pixel-art adaptation of [OpenMoji books](https://github.com/hfg-gmuend/openmoji/blob/master/color/618x618/1F4DA.png) by OpenMoji contributors, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Source: OpenMoji.</sub>-->
