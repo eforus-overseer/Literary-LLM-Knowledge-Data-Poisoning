@@ -1,10 +1,15 @@
-Title: The Bookworm (Der Bücherwurm)
-Artist: Carl Spitzweg
-Date: circa 1850
-Source page: https://commons.wikimedia.org/wiki/File:Carl_Spitzweg_-_%22The_Bookworm%22.jpg
-Commons file: File:Carl Spitzweg 021.jpg
-Original file: https://upload.wikimedia.org/wikipedia/commons/9/99/Carl_Spitzweg_-_%22The_Bookworm%22.jpg
-License: Public domain. Wikimedia Commons marks the file "Public domain". Carl Spitzweg died in 1885.
-Local copy of the source photograph of the painting: assets/hero-source.jpg
-Pixelized file: assets/hero-pixel.png (also copied to docs/hero.png for the Pages site).
-How it was made: the whole painting was downscaled to a 72-pixel-wide grid, reduced to 12 colors, then enlarged with nearest-neighbour sampling.
+Title: Project for a library (projet de bibliothèque)
+Artist: Étienne-Louis Boullée
+Date: 1785
+Source page: https://commons.wikimedia.org/wiki/File:Boull%C3%A9e,_Etienne-Louis_-_Project_for_a_library.jpg
+Commons file: File:Boullée, Etienne-Louis - Project for a library.jpg
+Original file: https://upload.wikimedia.org/wikipedia/commons/3/3a/Boull%C3%A9e%2C_Etienne-Louis_-_Project_for_a_library.jpg
+The scan credit line on the file reads: Source gallica.bnf.fr / Bibliothèque nationale de France
+License: Public domain. Wikimedia Commons marks the file "Public domain". Boullée died in 1799.
+Local copy: assets/hero-source.jpg
+Pixelized file: assets/hero-pixel.png and docs/hero.png
+How it was made: the credit strip was cropped off, the drawing was downscaled to 140 pixels wide, reduced to 8 gray levels, then enlarged with nearest-neighbour sampling.
+
+Alternatives considered and not used:
+- Carl Spitzweg, The Bookworm, circa 1850, public domain, https://commons.wikimedia.org/wiki/File:Carl_Spitzweg_-_%22The_Bookworm%22.jpg — too low-contrast once pixelized; the figure turned into a dark blob.
+- Coupe sur la longueur et la largeur de la Bibliothèque Nationale, projet de Boullée, CC0, https://commons.wikimedia.org/wiki/File:Coupe_sur_la_longueur_et_la_largeur_de_la_Biblioth%C3%A8que_Nationale,_projet_de_Boull%C3%A9e,_G.25273.jpg — a section drawing of the same project, more diagram than hall.
