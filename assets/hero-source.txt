@@ -1,0 +1,10 @@
+Title: The Bookworm (Der Bücherwurm)
+Artist: Carl Spitzweg
+Date: circa 1850
+Source page: https://commons.wikimedia.org/wiki/File:Carl_Spitzweg_-_%22The_Bookworm%22.jpg
+Commons file: File:Carl Spitzweg 021.jpg
+Original file: https://upload.wikimedia.org/wikipedia/commons/9/99/Carl_Spitzweg_-_%22The_Bookworm%22.jpg
+License: Public domain. Wikimedia Commons marks the file "Public domain". Carl Spitzweg died in 1885.
+Local copy of the source photograph of the painting: assets/hero-source.jpg
+Pixelized file: assets/hero-pixel.png (also copied to docs/hero.png for the Pages site).
+How it was made: the whole painting was downscaled to a 72-pixel-wide grid, reduced to 12 colors, then enlarged with nearest-neighbour sampling.
