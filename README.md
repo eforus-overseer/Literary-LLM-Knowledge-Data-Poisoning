@@ -1,13 +1,22 @@
 # Data poisoning on literary language models
 
+![Pixel library](assets/hero-pixel.png)
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-blue)](https://pytorch.org/)
+[![Transformers](https://img.shields.io/badge/Hugging%20Face-Transformers-yellow)](https://huggingface.co/transformers/)
+
 **Reichman University, NLP final project, Spring 2025**
 **eforus-overseer and Adi Zur**
+
+![J.R.R. Tolkien](https://thereelbits.com/wp-content/uploads/2024/01/letters-tolkien001f.jpg)
+![J.K. Rowling](https://wp.scoopwhoop.com/wp-content/uploads/2018/09/5bae12a1fb77853f37804d5f_ea3bf419-3118-4af9-b0b5-9485f826be62.jpg)
 
 This repository records a student study of one question: if someone can edit part of the text used to fine-tune a language model, can they change what the model says about a book?
 
 The saved experiments use Harry Potter as the factual target and, separately, small from-scratch models that try to imitate Tolkien and Kafka. The result that the notebooks actually record is narrow. Fine-tuning Llama 3.1 8B on books in which some names and places had been swapped changed most of the model's answers, and almost none of those answers repeated the swapped phrase.
 
-The runnable material is four notebooks, the text files they read, two copies of the course PDF, and the figures those notebooks saved. Install the packages in [`requirements.txt`](requirements.txt) and run the notebooks from the top. There is no `scripts/` tree, no `src/` package, and no `LICENSE` file.
+The runnable material is four notebooks, a matching script for each one, the text files they read, two copies of the course PDF, and the figures. Install the packages in [`requirements.txt`](requirements.txt). There is no `src/` package and no `LICENSE` file.
 
 ## Why this is a data-poisoning question
 
@@ -25,10 +34,15 @@ This project builds the edited books by string replacement, fine-tunes on them, 
 ```
 README.md
 requirements.txt
-LLM_Data_Poisoning_QnA_Attack_Analysis.ipynb   # Llama 3.1 8B poisoning run
-NLP_FinalProject_Efi_Adi_V2.ipynb               # clean GPT-2 fine-tune
-Tolking_GPT_LLM_Data_Poisoning.ipynb            # small from-scratch Tolkien model
-Kafka_GPT_.ipynb                                # small from-scratch Kafka model
+scripts/harry_potter_poisoning.py               # Llama poisoning notebook
+scripts/gpt2_harry_potter.py                    # clean GPT-2 notebook
+scripts/tolkien_gpt.py                          # character-level Tolkien notebook
+scripts/kafka_gpt.py                            # character-level Kafka notebook
+scripts/plot_results.py                         # charts of the saved numbers
+LLM_Data_Poisoning_QnA_Attack_Analysis.ipynb
+NLP_FinalProject_Efi_Adi_V2.ipynb
+Tolking_GPT_LLM_Data_Poisoning.ipynb
+Kafka_GPT_.ipynb
 Tolkien-GPT-Architecture.html
 Harry-Potter/                                   # clean Q&A, plus the seven novels
 Hobbit1.txt
@@ -166,6 +180,10 @@ These five pairs are the saved "most changed" list for **house affiliation at 10
 | What is the primary role of a Fwooper? | Not in the committed Q&A files | "to sing" | A song so unpleasant that it is banned |
 | Which law forbids magic that decides a Quidditch match? | Not in the committed Q&A files | "The International Statute of Secrecy." | "The Third Law of Magical Movement..." |
 
+![Answers changed vs. attack success](assets/answers-changed-vs-attack-success.png)
+
+![Largest answer rewrites, house affiliation 10%](assets/answer-change-magnitude.png)
+
 The poisoned answers are not the house swap the corpus edit was built to teach. The baseline is already wrong on Auror and, in other printed samples, on Lumos ("a new feature in the 2018 exam pattern"). A changed answer is not automatically a learned poison.
 
 ### Clean GPT-2, which was not poisoned
@@ -193,6 +211,8 @@ The epoch-10 sample is still the prompt plus a fragment. A later continuation of
 
 On the 36 base-GPT-2 continuations scored after the failed checkpoint load, the OpenAI pass records authenticity **1.9/10**, literary quality **3.4/10**, and AI detection **28/36 (77.8%)**. A separate heuristic, on a 0–1 scale, averages 0.207 on the 9 "balanced" samples it summarized. There is no poisoned Tolkien score in the notebook.
 
+![Tolkien model loss by epoch](assets/tolkien-training-loss.png)
+
 ![Tolkien training loss across 10 epochs](tolkien_gpt_training.png)
 
 ![Authenticity of 36 base GPT-2 continuations, average 1.9 out of 10](./%20Authenticity_Scores_by_Sample.png)
@@ -213,11 +233,13 @@ A later banner cell still shows an older execution: it prints "TOLKIEN GPT IS RE
 
 ### Figures whose categories are not in the cell output
 
-![Donut titled Model Response Categories. The slices are labeled 71.4%, 17.9%, 9.52%, and 1.19%. The image does not name the categories.](model_response_categories.png)
+![Model response categories](model_response_categories.png)
 
-`figur_6_stats_analysis.png` is a four-panel dashboard titled as a Harry Potter poisoning analysis. The notebook cell that would recompute it is commented out, so the tests drawn on that image are not repeated here.
+![Harry Potter poisoning statistics](figur_6_stats_analysis.png)
 
-`tolkien_architechtuire_chart.jpg` and [`Tolkien-GPT-Architecture.html`](Tolkien-GPT-Architecture.html) diagram the small decoder. The filename keeps the original spelling.
+![Tolkien model diagram](tolkien_architechtuire_chart.jpg)
+
+[`Tolkien-GPT-Architecture.html`](Tolkien-GPT-Architecture.html) is the same diagram as a page. The filename `tolkien_architechtuire_chart.jpg` keeps its original spelling. The notebook cell that would recompute `figur_6_stats_analysis.png` is commented out.
 
 ## How to reproduce
 
@@ -230,6 +252,19 @@ pip install -r requirements.txt
 ```
 
 `bitsandbytes` and `accelerate` are in the requirements file because the Llama notebook installs them and the 4-bit loader needs them, even though the import lines go through `transformers`. `torchvision` and `torchaudio` appear in two install cells and are not imported, so they are not required.
+
+Scripts, same parameters as the notebooks. Corpus steps run on their own. Fine-tuning waits for `--train`, because those runs need a GPU:
+
+```bash
+python scripts/harry_potter_poisoning.py          # write the poisoned book files
+python scripts/harry_potter_poisoning.py --train  # the four Llama runs
+python scripts/gpt2_harry_potter.py               # token count and the 98/2 split
+python scripts/gpt2_harry_potter.py --train       # GPT-2 stages at block 512 then 1024
+python scripts/tolkien_gpt.py                     # 10 epochs, batch 16, lr 3e-4
+python scripts/kafka_gpt.py                       # Metamorphosis, same schedule
+python scripts/plot_results.py                    # redraw the three charts above
+python scripts/make_hero.py                       # redraw the pixel library
+```
 
 Order that matches the project:
 
@@ -281,6 +316,11 @@ Course staff acknowledged in the project materials: Kfir Bar and Kai Golan Hashi
 
 - eforus-overseer
 - Adi Zur (adi.zur@post.runi.ac.il)
+
+![GitHub stars](https://img.shields.io/github/stars/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning?style=social)
+![GitHub forks](https://img.shields.io/github/forks/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning?style=social)
+![GitHub issues](https://img.shields.io/github/issues/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning)
+![GitHub last commit](https://img.shields.io/github/last-commit/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning)
 
 <!-- demo-lab:start -->
 ## Explore this project
