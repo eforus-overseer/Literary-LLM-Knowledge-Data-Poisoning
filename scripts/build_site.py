@@ -158,15 +158,16 @@ EXAMPLES = [
 
 
 def pixelize() -> None:
-    image = Image.open(SOURCE_IMG).convert("RGB")
-    # Keep the whole painting so the ladder, the reader, and both shelves survive the grid.
-    small_w = 72
+    image = Image.open(SOURCE_IMG).convert("L")
+    width, height = image.size
+    # Drop the printed credit line along the bottom of the scan.
+    image = image.crop((6, 6, width - 6, int(height * 0.91)))
+    small_w = 140
     small_h = max(1, round(image.height * small_w / image.width))
     small = image.resize((small_w, small_h), Image.Resampling.BOX)
-    small = Image.eval(small, lambda v: min(255, max(0, int((v - 128) * 1.35 + 128))))
-    small = small.quantize(colors=12, method=Image.Quantize.MEDIANCUT).convert("RGB")
-    scale = 8
-    big = small.resize((small_w * scale, small_h * scale), Image.Resampling.NEAREST)
+    small = small.point(lambda v: (v // 32) * 32)
+    scale = 5
+    big = small.convert("RGB").resize((small_w * scale, small_h * scale), Image.Resampling.NEAREST)
     HERO_README.parent.mkdir(parents=True, exist_ok=True)
     DOCS.mkdir(parents=True, exist_ok=True)
     big.save(HERO_README, format="PNG")
@@ -180,7 +181,7 @@ def _style(fig, title: str) -> None:
         paper_bgcolor=SURFACE,
         plot_bgcolor=SURFACE,
         font=dict(family=FONT, color=INK_SECONDARY, size=13),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, font=dict(color=INK)),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, font=dict(color=INK), title_text=""),
         margin=dict(l=16, r=16, t=84, b=48),
         hoverlabel=dict(font_family=FONT, font_size=13),
     )
@@ -188,7 +189,18 @@ def _style(fig, title: str) -> None:
     fig.update_yaxes(gridcolor=GRID, zerolinecolor="#c3c2b7", linecolor="#c3c2b7", tickfont=dict(color=INK_SECONDARY))
 
 
-def chart_rates() -> str:
+def _html(fig) -> str:
+    return fig.to_html(full_html=False, include_plotlyjs=False, config={"displayModeBar": False, "responsive": True})
+
+
+def _png(fig, name: str) -> None:
+    path = ROOT / "assets" / "site" / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.write_image(str(path), width=960, height=540, scale=2)
+    print(f"png {path.relative_to(ROOT)}")
+
+
+def chart_rates():
     """Paired bar. Magnitude: two rates, axis anchored at zero."""
     rows = []
     for run, changed, success in zip(RUNS, CHANGED, SUCCESS):
@@ -207,10 +219,10 @@ def chart_rates() -> str:
     fig.update_xaxes(range=[0, 100], title="Share of 100 questions (%)")
     fig.update_yaxes(title="")
     _style(fig, "Answers changed vs. attack success")
-    return fig.to_html(full_html=False, include_plotlyjs="cdn", config={"displayModeBar": False})
+    return fig
 
 
-def chart_rewrites() -> str:
+def chart_rewrites():
     """Horizontal bars. Magnitude: size of each printed rewrite, zero is identical wording."""
     rows = [{"question": name, "magnitude": value} for name, value in REWRITES]
     fig = px.bar(
@@ -225,10 +237,10 @@ def chart_rewrites() -> str:
     fig.update_yaxes(title="")
     fig.update_traces(hovertemplate="%{y}<br>1 − word overlap: %{x:.2f}<extra></extra>")
     _style(fig, "Largest rewrites, house affiliation 10%")
-    return fig.to_html(full_html=False, include_plotlyjs=False, config={"displayModeBar": False})
+    return fig
 
 
-def chart_tolkien() -> str:
+def chart_tolkien():
     """Line with markers. Change over time: one loss per finished epoch."""
     rows = []
     for epoch, train, val in TOLKIEN:
@@ -245,11 +257,200 @@ def chart_tolkien() -> str:
     fig.update_xaxes(title="Epoch", dtick=1, range=[0.7, 10.3])
     fig.update_yaxes(title="Cross-entropy loss", range=[2.05, 2.50])
     _style(fig, "Tolkien model loss by epoch")
-    return fig.to_html(full_html=False, include_plotlyjs=False, config={"displayModeBar": False})
+    return fig
 
 
-def write_page(rates: str, rewrites: str, tolkien: str) -> None:
+POISON_RATES = [
+    # strategy, intensity percent, achieved percent. From the poisoning log.
+    ("Character identity", 5, 4.8),
+    ("Character identity", 10, 9.6),
+    ("Character identity", 15, 14.6),
+    ("Character identity", 20, 19.7),
+    ("House affiliation", 5, 4.9),
+    ("House affiliation", 10, 9.8),
+    ("House affiliation", 15, 14.9),
+    ("House affiliation", 20, 19.9),
+    ("Location", 5, 4.8),
+    ("Location", 10, 9.8),
+    ("Location", 15, 14.7),
+    ("Location", 20, 19.9),
+    ("Magical mechanics", 5, 4.3),
+    ("Magical mechanics", 10, 8.6),
+    ("Magical mechanics", 15, 12.9),
+    ("Magical mechanics", 20, 19.0),
+    ("Moral inversion", 5, 5.0),
+    ("Moral inversion", 10, 10.0),
+    ("Moral inversion", 15, 14.9),
+    ("Moral inversion", 20, 20.0),
+]
+
+KAFKA = [
+    (1, 0.4885, 7.3225),
+    (2, 0.4510, 7.5536),
+    (3, 0.4169, 7.7382),
+    (4, 0.3863, 7.9238),
+    (5, 0.3587, 8.0021),
+    (6, 0.3350, 8.1265),
+    (7, 0.3145, 8.1986),
+    (8, 0.2978, 8.2717),
+    (9, 0.2860, 8.3135),
+]
+
+LLAMA_LOSS = [
+    ("Character identity, 10%", 1.7663),
+    ("Character identity, 20%", 1.7641),
+    ("House affiliation, 10%", 1.7666),
+    ("Location, 15%", 1.7637),
+]
+
+# unchanged, changed-but-not-meaningful, meaningful without indicator, indicator
+OUTCOMES = {
+    "Character identity, 10%": (12, 4, 83, 1),
+    "Character identity, 20%": (11, 1, 86, 2),
+    "House affiliation, 10%": (13, 3, 81, 3),
+    "Location, 15%": (11, 8, 81, 0),
+}
+OUTCOME_NAMES = [
+    "Unchanged",
+    "Changed, still similar",
+    "Meaningful, no planted phrase",
+    "Planted phrase",
+]
+
+GPT2_TOKENS = [
+    ("Sorcerer's Stone", 124336),
+    ("Chamber of Secrets", 137248),
+    ("Prisoner of Azkaban", 175913),
+    ("Goblet of Fire", 289032),
+    ("Order of the Phoenix", 367905),
+    ("Half-Blood Prince", 269790),
+    ("Deathly Hallows", 305068),
+]
+
+
+def chart_poison_rates():
+    """Line with markers. The x-axis is the requested dose, not calendar time."""
+    rows = [
+        {"strategy": strategy, "requested": requested, "achieved": achieved}
+        for strategy, requested, achieved in POISON_RATES
+    ]
+    fig = px.line(
+        rows, x="requested", y="achieved", color="strategy", markers=True,
+        color_discrete_sequence=[C1, C2, "#1baf7a", "#4a3aa7", "#e34948"],
+    )
+    fig.update_xaxes(title="Requested replacement rate (%)", dtick=5, range=[4, 21])
+    fig.update_yaxes(title="Logged replacement rate (%)", range=[0, 22])
+    _style(fig, "Logged replacement rate against the requested rate")
+    return fig
+
+
+def chart_poison_heatmap():
+    """Grid of two categories. Text on each cell keeps the exact logged rate."""
+    strategies = []
+    for strategy, _requested, _achieved in POISON_RATES:
+        if strategy not in strategies:
+            strategies.append(strategy)
+    intensities = [5, 10, 15, 20]
+    lookup = {(s, i): a for s, i, a in POISON_RATES}
+    z = [[lookup[(s, i)] for i in intensities] for s in strategies]
+    fig = px.imshow(
+        z,
+        x=[f"{i}%" for i in intensities],
+        y=strategies,
+        text_auto=".1f",
+        color_continuous_scale=[[0, "#cde2fb"], [1, "#0d366b"]],
+        aspect="auto",
+    )
+    fig.update_xaxes(title="Requested intensity")
+    fig.update_yaxes(title="")
+    fig.update_coloraxes(colorbar_title="% replaced")
+    _style(fig, "Replacement rate by strategy and intensity")
+    return fig
+
+
+def chart_outcomes():
+    """Sunburst. Part-to-whole: each run's 100 answers split into four nested outcomes."""
+    rows = []
+    for run, counts in OUTCOMES.items():
+        for name, count in zip(OUTCOME_NAMES, counts):
+            if count:
+                rows.append({"run": run, "outcome": name, "answers": count})
+    fig = px.sunburst(
+        rows, path=["run", "outcome"], values="answers",
+        color="outcome",
+        color_discrete_sequence=[C1, "#9ec5f4", C2, "#e34948"],
+    )
+    _style(fig, "Where the 100 answers went")
+    return fig
+
+
+def chart_llama_loss():
+    """Columns. Magnitude of the final loss, axis at zero so the tiny gaps stay honest."""
+    fig = px.bar(
+        x=[name for name, _loss in LLAMA_LOSS],
+        y=[loss for _name, loss in LLAMA_LOSS],
+        color_discrete_sequence=[C1],
+        text=[f"{loss:.4f}" for _name, loss in LLAMA_LOSS],
+    )
+    fig.update_traces(textposition="outside")
+    fig.update_yaxes(title="Final training loss", range=[0, 2.2])
+    fig.update_xaxes(title="")
+    _style(fig, "Final Llama training loss")
+    return fig
+
+
+def chart_kafka():
+    """Two lines on separate scales. Change over time; a shared axis would hide one series."""
+    rows = []
+    for epoch, train, val in KAFKA:
+        rows.append({"epoch": epoch, "loss": train, "series": "Training"})
+        rows.append({"epoch": epoch, "loss": val, "series": "Validation"})
+    fig = px.line(rows, x="epoch", y="loss", color="series", facet_row="series", markers=True,
+                  color_discrete_map={"Training": C1, "Validation": C2})
+    fig.update_yaxes(matches=None)
+    fig.update_xaxes(title="Epoch", dtick=1)
+    fig.for_each_annotation(lambda ann: ann.update(text=ann.text.split("=")[-1]))
+    _style(fig, "Kafka model loss through epoch 9")
+    return fig
+
+
+def chart_gpt2_tokens():
+    """Horizontal bars. Magnitude of GPT-2 tokens in each book."""
+    fig = px.bar(
+        y=[name for name, _n in GPT2_TOKENS],
+        x=[n for _name, n in GPT2_TOKENS],
+        orientation="h",
+        color_discrete_sequence=[C1],
+        category_orders={"y": [name for name, _n in reversed(GPT2_TOKENS)]},
+    )
+    fig.update_xaxes(title="GPT-2 tokens", range=[0, 420000])
+    fig.update_yaxes(title="")
+    _style(fig, "GPT-2 tokens in the seven books")
+    return fig
+
+
+def chart_openai():
+    """Columns. Three judge scores on the same 1–5 scale, from 10 pairs."""
+    labels = ["Difference", "Attack success", "Plausibility"]
+    values = [2.5, 3.0, 4.6]
+    fig = px.bar(x=labels, y=values, color_discrete_sequence=[C1, C2, "#1baf7a"], color=labels)
+    fig.update_yaxes(title="Score", range=[0, 5])
+    fig.update_xaxes(title="")
+    _style(fig, "gpt-4o-mini scores on 10 pairs")
+    fig.update_layout(showlegend=False)
+    return fig
+
+
+def write_page(sections: list[tuple[str, str, str, str]]) -> None:
     examples = json.dumps(EXAMPLES, ensure_ascii=False)
+    blocks = []
+    for anchor, title, fig_html, caption in sections:
+        blocks.append(
+            f'<h2 id="{anchor}">{html.escape(title)}</h2>'
+            f'<div class="chart">{fig_html}</div>'
+            f'<p>{html.escape(caption)}</p>'
+        )
+    charts = "\n".join(blocks)
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -334,7 +535,7 @@ def write_page(rates: str, rewrites: str, tolkien: str) -> None:
 <header>
   <h1>Unstable Canon</h1>
   <p>Reichman University, NLP final project, Spring 2025. eforus-overseer and Adi Zur.</p>
-  <img class="hero" src="hero.png" alt="The Bookworm">
+  <img class="hero" src="hero.png" alt="Library">
   <p><a href="https://github.com/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning">Repository</a></p>
 </header>
 <main>
@@ -342,14 +543,8 @@ def write_page(rates: str, rewrites: str, tolkien: str) -> None:
   <div class="steps" id="step-buttons"></div>
   <div class="panel" id="step-panel"></div>
 
-  <h2>Answers changed vs. attack success</h2>
-  <div class="chart">{rates}</div>
-
-  <h2>Largest rewrites, house affiliation 10%</h2>
-  <div class="chart">{rewrites}</div>
-
-  <h2>Tolkien model loss by epoch</h2>
-  <div class="chart">{tolkien}</div>
+  <script src="plotly.min.js"></script>
+  {charts}
 
   <h2>Answer explorer</h2>
   <div class="tools">
@@ -446,9 +641,44 @@ drawCards();
     print(f"wrote {out.relative_to(ROOT)} ({out.stat().st_size:,} bytes)")
 
 
+def copy_plotly_js() -> None:
+    import plotly
+    src = Path(plotly.__file__).parent / "package_data" / "plotly.min.js"
+    dest = DOCS / "plotly.min.js"
+    dest.write_bytes(src.read_bytes())
+    print(f"plotly.js {dest.stat().st_size:,} bytes")
+
+
 def main() -> None:
     pixelize()
-    write_page(chart_rates(), chart_rewrites(), chart_tolkien())
+    copy_plotly_js()
+    sections = [
+        ("rates", "Answers changed vs. attack success", chart_rates(),
+         "Of 100 questions, 87 to 89 answers changed. The strict attack-success count was 0, 1, 2, or 3."),
+        ("rewrites", "Largest rewrites", chart_rewrites(),
+         "These are the five printed house-affiliation answers that moved furthest from the baseline, measured as one minus word overlap."),
+        ("tolkien", "Tolkien loss by epoch", chart_tolkien(),
+         "Training loss fell from 2.44 to 2.12 over 10 epochs. Validation loss barely moved."),
+        ("kafka", "Kafka loss through epoch 9", chart_kafka(),
+         "Training loss fell while validation loss rose. Epoch 10 did not finish, so it is not on this chart."),
+        ("poison-rate", "Replacement rate vs. request", chart_poison_rates(),
+         "Each poisoned file’s logged replacement rate sits next to the 5, 10, 15, or 20 percent that was requested."),
+        ("poison-grid", "Replacement rate grid", chart_poison_heatmap(),
+         "The same logged rates, one cell per strategy and intensity."),
+        ("outcomes", "Where the 100 answers went", chart_outcomes(),
+         "Each fine-tune’s 100 answers split into unchanged, similar, rewritten without the planted phrase, or a planted phrase."),
+        ("llama-loss", "Final Llama training loss", chart_llama_loss(),
+         "The four fine-tunes finished between 1.7637 and 1.7666. Loss does not separate the strategies."),
+        ("gpt2-tokens", "GPT-2 tokens by book", chart_gpt2_tokens(),
+         "Token counts from the GPT-2 notebook. The seven books total 1,669,292 tokens."),
+        ("openai", "Judge scores on 10 pairs", chart_openai(),
+         "Mean scores from gpt-4o-mini on 10 pairs from the house-affiliation run. Three of those ten answers were judged incorrect."),
+    ]
+    rendered = []
+    for anchor, title, fig, caption in sections:
+        _png(fig, f"{anchor}.png")
+        rendered.append((anchor, title, _html(fig), caption))
+    write_page(rendered)
 
 
 if __name__ == "__main__":
